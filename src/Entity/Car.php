@@ -59,8 +59,8 @@ class Car
     public function setLinkedCar(Availability $LinkedCar): static
     {
         // set the owning side of the relation if necessary
-        if ($LinkedCar->getLinkCar() !== $this) {
-            $LinkedCar->setLinkCar($this);
+        if ($LinkedCar->getLinkedCar() !== $this) {
+            $LinkedCar->setLinkedCar($this);
         }
 
         $this->LinkedCar = $LinkedCar;
