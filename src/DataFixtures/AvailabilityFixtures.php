@@ -12,24 +12,39 @@ class AvailabilityFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
-        // Récupération des voitures à partir du gestionnaire d'entités
+        
         $cars = $manager->getRepository(Car::class)->findAll();
 
-        // Pour chaque voiture, nous créons une disponibilité fictive
+        
         foreach ($cars as $car) {
-            // Création de l'entité Availability
+            
+            $price = mt_rand(50, 150) / 10; 
+
+            
+            $startDate = new \DateTime();
+            $startDate->setTimestamp(mt_rand(strtotime('2024-05-01'), strtotime('2025-01-01')));
+
+            
+            $endDate = new \DateTime();
+            $endDate->setTimestamp(mt_rand($startDate->getTimestamp(), strtotime('2025-01-01')));
+
+            
+            $currentDate = new \DateTime();
+            $available = $currentDate < $startDate || $currentDate > $endDate;
+
+            
             $availability = new Availability();
             $availability->setLinkCar($car);
-            $availability->setPrice('75.00'); // Prix fictif
-            $availability->setStartDate(new \DateTime('now')); // Date de début fictive
-            $availability->setEndDate(new \DateTime('+7 days')); // Date de fin fictive (une semaine à partir de maintenant)
-            $availability->setAvailable(true); // Par défaut, la disponibilité est définie sur true
+            $availability->setPrice($price);
+            $availability->setStartDate($startDate);
+            $availability->setEndDate($endDate);
+            $availability->setAvailable($available);
 
-            // Persist et flush de l'entité Availability
+            
             $manager->persist($availability);
         }
 
-        // Exécution des opérations de persistance
+        
         $manager->flush();
     }
 
