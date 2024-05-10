@@ -94,4 +94,5 @@ class Availability
 
         return $this;
     }
+   
 }

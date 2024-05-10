@@ -7,9 +7,8 @@
 {% block header %}{% endblock %}
 
 {% block body %}
-	<h1>super-location</h1>
-	<p>location vacance été</p>
-	<a href="/create">go to creation</a>
+	<h1>Toute les voitures</h1>
+	
 
 	<section>
 
@@ -28,6 +27,7 @@
 					{{dispo.price}}€ /jour</p>
 				<p>Disponible:
 					{{ dispo.available == 1 ? 'oui' : 'non' }}</p>
+				<a href="{{ path('car.edit', { 'id': dispo.id }) }}">Modifier</a>
 
 			</div>
 		{% endfor %}
