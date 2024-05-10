@@ -35,7 +35,7 @@ class ShowAllCarController extends AbstractController
 
     //ajout de la route edit disponibilité------------
 
-    #[Route('/create/{id}/edit', name: 'car.edit')]
+    #[Route('/create/{id}/edit', name: 'car.edit', methods:['GET','POST'])]
     public function edit(Request $request, $id, AvailabilityRepository $availabilityRepository, EntityManagerInterface $em): Response
     {
         $dispo = $availabilityRepository->find($id);
@@ -92,5 +92,13 @@ class ShowAllCarController extends AbstractController
     }
 
     //ajout de la route de supression disponibilité------------
+    #[Route('/create/{id}', name:'availability.delete', methods:['POST'])]
+    public function remove(Request $request, $id ,AvailabilityRepository $availabilityRepository, CarRepository $carRepository, EntityManagerInterface $em){
+        $dispo = $availabilityRepository->find($id);
+        $em->remove($dispo);
+        $em->flush();
+        //flash
+        return $this->redirectToRoute('app_show_all_car');
 
+    }
 }
