@@ -14,7 +14,17 @@
 	<section>
 
 		{% for dispo in dispos %}
-			<p>{{dispo.price}}</p>
+			<div class="donnée">
+				<p>{{dispo.startDate |date('d/m/Y')}}</p>
+				<p>{{dispo.endDate|date('d/m/Y')}}</p>
+				<p>{{dispo.price}}</p>
+				<p>Disponible:
+					{{ dispo.available == 1 ? 'oui' : 'non' }}</p>
+				<p>Nom de la voiture:
+					{{ dispo.linkCar.brand }}</p>
+				<p>Modèle de la voiture:
+					{{ dispo.linkCar.model }}</p>
+			</div>
 		{% endfor %}
 
 	</section>
