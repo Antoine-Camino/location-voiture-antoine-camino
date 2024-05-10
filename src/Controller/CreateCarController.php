@@ -13,7 +13,7 @@ class CreateCarController extends AbstractController
     public function index(AvailabilityRepository $repository): Response
     {
 
-        $dispos = $repository->find($id);
+       
 
         return $this->render('create_car/index.html.twig', [
             'controller_name' => 'CreateCarController',
