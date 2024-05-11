@@ -1,9 +1,150 @@
+:root {
+    --background: #0D1512;
+    --input:#121C18;
+    --component: #0F2E22;
+    --border: #1B5745;
+    --mainColor:#29A383;
+    --text:#1FD8A4;
+  }
+
+
+
 body{
     margin: 0;
     padding: 0;
-    background-color: #FFEFD6;
+    background-color:var(--background);
 }
 
+
+
+/*donnée*/
+
 .donnée{
-    background-color: #FFD19A;
+    background-color:var(--component);
+    border: solid 2px var(--border);
+    margin-right: 5vw;
+    margin-left: 5vw;
+    margin-top: 2vh;
+    border-radius: 50px;
+
+}
+
+.donnée div:first-child {
+    display: flex;
+    margin-left: 1vw;
+}
+
+.donnée > div > p {
+    font-size: 40px;
+   margin-right: 1vw;
+   font-weight: bold;
+}
+
+
+/*ui*/
+.titre-form >p{
+    font-size: 40px;
+}
+.form-background{
+    background-color:var(--component);
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+}
+
+.titre-form {
+    flex: 1; /* Prend la moitié de l'espace disponible */
+}
+
+.form-container {
+    flex: 1; /* Prend la moitié de l'espace disponible */
+}
+
+
+/*formulaire*/
+
+label{
+    color:var(--text);
+    font-size: 25px;
+}
+
+input{
+    background-color: var(--input);
+}
+
+select {
+    /* Styles pour l'élément select */
+    background-color: var(--input); /* Couleur de fond */
+    color: var(--text); /* Couleur du texte */
+    border: 1px solid var(--border); /* Bordure */
+    padding: 8px; /* Remplissage */
+    border-radius: 5px; /* Rayon de la bordure */
+    font-size: 16px; /* Taille de la police */
+    
+    box-sizing: border-box; /* Inclure la bordure dans la largeur */
+    cursor: pointer; /* Curseur */
+}
+
+#choose_dateand_price> div {
+    margin-top: 2vh; /
+}
+
+
+
+.form-container button[type="submit"] {
+  
+    background-color: var(--mainColor);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.form-container button[type="submit"]:hover {
+    background-color: #27B08B;
+}
+
+/*style généraux */
+
+h1{
+    font-size: 50px;
+    text-align: center;
+    color: var(--text);
+}
+
+p{
+    color: var(--text);
+}
+
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    
+}
+
+li{
+    margin-right:20px ;
+}
+
+a{
+    text-decoration: none;
+}
+
+/*header*/
+
+header{
+    display: flex;
+    background-color: var(--component);
+    height: 10vh;
+}
+
+/*footer*/
+
+footer{
+    background-color:var(--component);
+    height: 10vh;
 }

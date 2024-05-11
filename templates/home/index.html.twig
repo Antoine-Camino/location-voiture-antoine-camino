@@ -9,35 +9,66 @@
 {% block body %}
 	<h1>super-location</h1>
 	<p>location vacance été</p>
+
+	<div class="form-background">
+
+		<div class="titre-form">
+			<p>Formulaire</p>
+			<p>Sélectionner des dates</p>
+		</div>
+		
+		<div class="form-container">
+			{{ form_start(ChooseDateandPriceType) }}
+			{{ form_widget(ChooseDateandPriceType) }}
+			{{ form_end(ChooseDateandPriceType) }}
+
+		</div>
+	
+	
+	</div>
+
 	
 
-	{{ form_start(ChooseDateandPriceType) }}
-        {{ form_widget(ChooseDateandPriceType) }}
-        {{ form_end(ChooseDateandPriceType) }}
 
 	<section>
-	
+
 		{% for dispo in dispos %}
 			<div class="donnée">
-				<p>ID de la voiture: {{ dispo.linkCar.id }}</p> 
-				<p>Nom de la voiture:
-					{{ dispo.linkCar.brand }}</p>
-				<p>Modèle de la voiture:
-					{{ dispo.linkCar.model }}</p>
+				<div>
+					<p>
+						{{ dispo.linkCar.brand }}</p>
+					<p>
+						{{ dispo.linkCar.model }}</p>
+					<p>ID:
+					{{ dispo.linkCar.id }}</p>	
+				</div>
+
+				<p>
+					Disponibilité numéro :
+					{{ dispo.id }}</p>
+				
+
 				<p>{{dispo.startDate |date('d/m/Y')}}
 					au
 					{{dispo.endDate|date('d/m/Y')}}</p>
 
-				<p>à partir de :
-					{{dispo.price}}€ /jour</p>
-				<p>Disponible:
-					{{ dispo.available == 1 ? 'oui' : 'non' }}</p>
-					
+
+				<div>
+
+
+					<p>Disponible:
+						{{ dispo.available == 1 ? 'oui' : 'non' }}</p>
+
+					<p>à partir de :
+						{{dispo.price}}€ /jour</p>
+
+
+				</div>
+
 
 			</div>
 		{% endfor %}
 
-		
 
 	</section>
 {% endblock %}
