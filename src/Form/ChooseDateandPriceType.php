@@ -13,12 +13,18 @@ class ChooseDateandPriceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('Price')
-            ->add('StartDate')
-            ->add('EndDate')
-            ->add('submit', SubmitType::class, [
-                'label' => 'Rechercher'
-            ]);
+        ->add('Price', null, [
+            'label' => 'Prix'
+        ])
+        ->add('StartDate', null, [
+            'label' => 'Date de début'
+        ])
+        ->add('EndDate', null, [
+            'label' => 'Date de fin'
+        ])
+        ->add('submit', SubmitType::class, [
+            'label' => 'Rechercher'
+        ]);
             // ->add('Available')
             // ->add('LinkCar')
         ;

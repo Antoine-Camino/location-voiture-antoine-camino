@@ -1,11 +1,19 @@
 :root {
-    --background: #0D1512;
+    --background: #0D1520;
     --input:#121C18;
-    --component: #0F2E22;
-    --border: #1B5745;
-    --mainColor:#29A383;
-    --text:#1FD8A4;
+    --component: #0D2847;
+    --border: #104D87;
+    --border-light:#2870BD;
+    --mainColor:#0090FF;
+    --mainColor-light:#3B9EFF;
+    --text:#70B8FF;
   }
+
+
+  @font-face {
+    font-family: 'MaPolice';
+    src: url('/fonts/Serotiva-Regular-BF6639850925daa.otf') format('opentype'); /* Format OTF */
+}
 
 
 
@@ -42,6 +50,14 @@ body{
 
 
 /*ui*/
+
+.title {
+    height: 50vh;
+    background-image: url('/media/car.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; 
+}
 .titre-form >p{
     font-size: 40px;
 }
@@ -66,11 +82,31 @@ body{
 label{
     color:var(--text);
     font-size: 25px;
+    font-family: 'MaPolice', sans-serif;
 }
 
 input{
     background-color: var(--input);
 }
+
+input {
+    border: 1px solid var(--border); /* Bordure */
+    border-radius: 5px; /* Coins arrondis */
+    padding: 10px; /* Espacement interne */
+    font-size: 16px; /* Taille de la police */
+    background-color: var(--input); /* Couleur de fond */
+    color: var(--text); /* Couleur du texte */
+    transition: border-color 0.3s ease; /* Animation de transition */
+    margin-left: 2vw;
+}
+
+/* Style lorsqu'il est en focus */
+input:focus {
+    border-color: var(--border-light); /* Couleur de la bordure au focus */
+    outline: none; /* Suppression de l'outline */
+}
+
+
 
 select {
     /* Styles pour l'élément select */
@@ -99,11 +135,12 @@ select {
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+    margin-bottom: 2vh;
 }
 
 
 .form-container button[type="submit"]:hover {
-    background-color: #27B08B;
+    background-color: var(--mainColor-light);
 }
 
 /*style généraux */
@@ -112,10 +149,14 @@ h1{
     font-size: 50px;
     text-align: center;
     color: var(--text);
+    font-family: 'MaPolice', sans-serif;
+    margin: 0;
 }
 
 p{
     color: var(--text);
+    font-family: 'MaPolice', sans-serif;
+    
 }
 
 ul{
@@ -136,15 +177,33 @@ a{
 
 /*header*/
 
-header{
+header {
     display: flex;
     background-color: var(--component);
     height: 10vh;
+    font-family: 'MaPolice', sans-serif;
+}
+
+nav {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 100%; 
+}
+
+.menu-link {
+    color: var(--text);
+    font-size: 20px;
+    font-family: 'MaPolice', sans-serif;
+    margin: 0 10px; 
+    text-decoration: none; /* Supprimer la soulignement par défaut */
 }
 
 /*footer*/
 
 footer{
     background-color:var(--component);
-    height: 10vh;
+    height: 20vh;
+    font-family: 'MaPolice', sans-serif;
+    border-radius: 100px 100px 0px 0px;
 }

@@ -7,9 +7,15 @@
 {% block header %}{% endblock %}
 
 {% block body %}
-	<h1>super-location</h1>
+
+ <section class="title">
+
+ <h1>Super-location</h1>
 	<p>location vacance été</p>
 
+ 
+ </section>
+	
 	<div class="form-background">
 
 		<div class="titre-form">
@@ -43,6 +49,8 @@
 					{{ dispo.linkCar.id }}</p>	
 				</div>
 
+				
+
 				<p>
 					Disponibilité numéro :
 					{{ dispo.id }}</p>
@@ -51,6 +59,12 @@
 				<p>{{dispo.startDate |date('d/m/Y')}}
 					au
 					{{dispo.endDate|date('d/m/Y')}}</p>
+				
+				
+				
+				
+
+				
 
 
 				<div>
