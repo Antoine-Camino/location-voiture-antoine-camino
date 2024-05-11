@@ -9,10 +9,14 @@
 {% block body %}
 	<h1>super-location</h1>
 	<p>location vacance été</p>
-	<a href="/create">go to creation</a>
+	
+
+	{{ form_start(ChooseDateandPriceType) }}
+        {{ form_widget(ChooseDateandPriceType) }}
+        {{ form_end(ChooseDateandPriceType) }}
 
 	<section>
-
+	
 		{% for dispo in dispos %}
 			<div class="donnée">
 				<p>ID de la voiture: {{ dispo.linkCar.id }}</p> 
@@ -28,9 +32,12 @@
 					{{dispo.price}}€ /jour</p>
 				<p>Disponible:
 					{{ dispo.available == 1 ? 'oui' : 'non' }}</p>
+					
 
 			</div>
 		{% endfor %}
+
+		
 
 	</section>
 {% endblock %}
