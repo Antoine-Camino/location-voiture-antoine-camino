@@ -21,6 +21,23 @@ class AvailabilityRepository extends ServiceEntityRepository
         parent::__construct($registry, Availability::class);
     }
 
+    /**
+     * 
+     *
+     * @param \DateTimeInterface 
+     * @param \DateTimeInterface
+     * @return Availability[] 
+     */
+    public function findByDateRange(\DateTimeInterface $startDate, \DateTimeInterface $endDate): array
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.StartDate >= :startDate')
+            ->andWhere('a.EndDate <= :endDate')
+            ->setParameter('startDate', $startDate)
+            ->setParameter('endDate', $endDate)
+            ->getQuery()
+            ->getResult();
+    }
 //    /**
 //     * @return Availability[] Returns an array of Availability objects
 //     */

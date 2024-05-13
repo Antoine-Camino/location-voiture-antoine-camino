@@ -13,9 +13,9 @@ class ChooseDateandPriceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('Price', null, [
-            'label' => 'Prix'
-        ])
+        // ->add('Price', null, [
+        //     'label' => 'Prix'
+        // ])
         ->add('StartDate', null, [
             'label' => 'Date de début'
         ])

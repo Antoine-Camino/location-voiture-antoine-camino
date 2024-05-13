@@ -14,30 +14,47 @@ use Symfony\Component\HttpFoundation\Request;
 
 class HomeController extends AbstractController
 {
-    #[Route("/", name:"home", methods: ['GET'] )] 
-    public function home(Request $request,AvailabilityRepository $repository, CarRepository $carRepository): Response
-    {
+    #[Route("/", name:"home", methods: ['GET', 'POST'] )] 
+    public function home(Request $request, AvailabilityRepository $repository, CarRepository $carRepository): Response
+{
+    $dispos = $repository->findAll();
+    $cars = $carRepository->findAll();
+    
+    $form = $this->createForm(ChooseDateandPriceType::class);
+    $form->handleRequest($request);
+    
+    $startDate = null;
+    $endDate = null;
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        $data = $form->getData(); 
+        $startDate = $data->getStartDate();
+        $endDate = $data->getEndDate();
+
         
-        $dispos = $repository->findAll();
-        $cars = $carRepository->findAll();
+        $availabilities = $repository->findByDateRange($startDate, $endDate);
 
-        // Création d'une instance de ton formulaire
-        $form = $this->createForm(ChooseDateandPriceType::class);
-    
-        // Gestion de la soumission du formulaire
-        $form->handleRequest($request);
-    
-        if ($form->isSubmitted() && $form->isValid()) {
-            // Traitement du formulaire ici (par exemple, enregistrement en base de données)
-        }
-
+        
         return $this->render('home/index.html.twig', [
-            'dispos' => $dispos,
+            'dispos' => $availabilities,
             'cars' => $cars,
+            'startDate' => $startDate,
+            'endDate' => $endDate,
             'ChooseDateandPriceType' => $form->createView()
         ]);
     }
 
+    return $this->render('home/index.html.twig', [
+        'dispos' => $dispos,
+        'cars' => $cars,
+        'startDate' => $startDate,
+        'endDate' => $endDate,
+        'ChooseDateandPriceType' => $form->createView()
+    ]);
+}
+
+
+}
 
 
 
@@ -55,5 +72,5 @@ class HomeController extends AbstractController
     // }
 
 
-}
+
 

@@ -25,10 +25,11 @@ class AvailabilityFixtures extends Fixture implements DependentFixtureInterface
             $startDate->setTimestamp(mt_rand(strtotime('2024-05-01'), strtotime('2025-01-01')));
 
             
-            $endDate = new \DateTime();
-            $endDate->setTimestamp(mt_rand($startDate->getTimestamp(), strtotime('2025-01-01')));
+            $endDate = (clone $startDate)->modify('+1 day');
 
-            
+           
+            $endDate->setTimestamp(mt_rand($endDate->getTimestamp(), strtotime('2025-01-01')));
+
             $currentDate = new \DateTime();
             $available = $currentDate < $startDate || $currentDate > $endDate;
 
