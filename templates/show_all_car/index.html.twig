@@ -1,49 +1,66 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Accueil
+	tout les véhicules
 {% endblock %}
 
 {% block header %}{% endblock %}
 
 {% block body %}
 	<h1>Tous les véhicules disponibles 🚗</h1>
-	
+
 
 	<section>
+		<div id="btn-add">
 
-	<a href="{{ path('car.add')}}">créer une voiture</a>
-	<a href="{{ path('availability.add')}}">créer une disponibilité</a>
+			<a class="btn-add" href="{{ path('car.add')}}">créer une voiture</a>
+			<a class="btn-add" href="{{ path('availability.add')}}">créer une disponibilité</a>
+
+		</div>
 
 
 		{% for dispo in dispos %}
-			<div class="donnée">
-				<p>ID de la voiture: {{ dispo.linkCar.id }}</p> 
-				<p>Nom de la voiture:
-					{{ dispo.linkCar.brand }}</p>
-				<p>Modèle de la voiture:
-					{{ dispo.linkCar.model }}</p>
-				<p>{{dispo.startDate |date('d/m/Y')}}
-					au
-					{{dispo.endDate|date('d/m/Y')}}</p>
+			<div class="donnée-show">
 
-				<p>à partir de :
-					{{dispo.price}}€ /jour</p>
-				<p>Disponible:
-					{{ dispo.available == 1 ? 'oui' : 'non' }}</p>
+				<div class="donnée-show-info" >
 
-				<a href="{{ path('car.edit', { 'id': dispo.id }) }}">Modifier</a>
-				<form action="{{ path('availability.delete', { 'id': dispo.id }) }}" method="post" style="display: inline-block;">
-					<input type="hidden" name="_method" value="DELETE">
-					<button type="submit">Supprimer</button>
-        		</form>
+					<div>
+						<p>{{ dispo.linkCar.brand }}</p>
+						<p>{{ dispo.linkCar.model }}</p>
+						<p>ID:
+							{{ dispo.linkCar.id }}</p>
+					</div>
+
+					<p>Disponibilité numéro :
+						{{ dispo.id }}</p>
+
+					<p>{{ dispo.startDate|date('d/m/Y') }}
+						au
+						{{ dispo.endDate|date('d/m/Y') }}</p>
+
+					<div>
+						<p>Disponible:
+							{{ dispo.available == 1 ? 'oui' : 'non' }}</p>
+						<p>à partir de :
+							{{ dispo.price }}€ /jour</p>
+					</div>
+				</div>
+
+				<div class="donnée-show-btn">
+
+					<a id="btn-crud" href="{{ path('car.edit', { 'id': dispo.id }) }}">Modifier</a>
+					<form action="{{ path('availability.delete', { 'id': dispo.id }) }}" method="post" style="display: inline-block;">
+						<input type="hidden" name="_method" value="DELETE">
+						<button id="btn-crud-2" type="submit">Supprimer</button>
+					</form>
+				</div>
+
+
 				{# <form action="{{ path('availability.delete', { 'id': dispo.id }) }}" method="post">
-					<input type="hidden" name="_method" value="DELETE">
-					<button type="submit">Supprimer</button>
-				</form> #}
+									<input type="hidden" name="_method" value="DELETE">
+									<button type="submit">Supprimer</button>
+								</form> #}
 
-
-				
 
 			</div>
 		{% endfor %}
