@@ -22,11 +22,11 @@ class AvailabilityRepository extends ServiceEntityRepository
     }
 
     /**
-     * 
+     * Find availabilities within a date range.
      *
-     * @param \DateTimeInterface 
-     * @param \DateTimeInterface
-     * @return Availability[] 
+     * @param \DateTimeInterface $startDate
+     * @param \DateTimeInterface $endDate
+     * @return Availability[]
      */
     public function findByDateRange(\DateTimeInterface $startDate, \DateTimeInterface $endDate): array
     {
@@ -38,28 +38,34 @@ class AvailabilityRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-//    /**
-//     * @return Availability[] Returns an array of Availability objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
 
-//    public function findOneBySomeField($value): ?Availability
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    /**
+     * Find availabilities within a date range and maximum price.
+     *
+     * @param \DateTimeInterface $startDate
+     * @param \DateTimeInterface $endDate
+     * @param float|null $maxPrice
+     * @return Availability[]
+     */
+    public function findByDateAndMaxPrice(
+        \DateTimeInterface $startDate,
+        \DateTimeInterface $endDate,
+        ?float $maxPrice = null
+    ): array {
+        $queryBuilder = $this->createQueryBuilder('a')
+            ->andWhere('a.StartDate >= :startDate')
+            ->andWhere('a.EndDate <= :endDate')
+            ->setParameter('startDate', $startDate)
+            ->setParameter('endDate', $endDate);
+
+        if ($maxPrice !== null) {
+            $queryBuilder
+                ->andWhere('a.Price <= :maxPrice')
+                ->setParameter('maxPrice', $maxPrice);
+        }
+
+        return $queryBuilder
+            ->getQuery()
+            ->getResult();
+    }
 }

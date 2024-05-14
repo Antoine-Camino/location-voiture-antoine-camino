@@ -25,11 +25,13 @@ class HomeController extends AbstractController
     
     $startDate = null;
     $endDate = null;
+    $maxPrice = null;
 
     if ($form->isSubmitted() && $form->isValid()) {
         $data = $form->getData(); 
         $startDate = $data->getStartDate();
         $endDate = $data->getEndDate();
+        $maxPrice = $data->getPrice();
 
         
         $availabilities = $repository->findByDateRange($startDate, $endDate);
@@ -40,6 +42,7 @@ class HomeController extends AbstractController
             'cars' => $cars,
             'startDate' => $startDate,
             'endDate' => $endDate,
+            'maxPrice' => $maxPrice, 
             'ChooseDateandPriceType' => $form->createView()
         ]);
     }
@@ -49,6 +52,7 @@ class HomeController extends AbstractController
         'cars' => $cars,
         'startDate' => $startDate,
         'endDate' => $endDate,
+        'maxPrice' => $maxPrice,
         'ChooseDateandPriceType' => $form->createView()
     ]);
 }

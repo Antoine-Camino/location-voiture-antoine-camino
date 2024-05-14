@@ -40,7 +40,7 @@
 
 		<section>
     {% for dispo in dispos %}
-        {% if dispo.startDate >= startDate and dispo.endDate <= endDate %}
+        {% if dispo.startDate >= startDate and dispo.endDate <= endDate and dispo.price <= maxPrice%}
             <div class="donnée">
                 <div>
                     <p>{{ dispo.linkCar.brand }}</p>

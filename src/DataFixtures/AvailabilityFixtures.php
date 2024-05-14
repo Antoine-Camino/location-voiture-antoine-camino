@@ -18,7 +18,7 @@ class AvailabilityFixtures extends Fixture implements DependentFixtureInterface
         
         foreach ($cars as $car) {
             
-            $price = mt_rand(50, 150) / 10; 
+            $price =  $price = mt_rand(20, 150); 
 
             
             $startDate = new \DateTime();
